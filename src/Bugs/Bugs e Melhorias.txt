@@ -1,0 +1,24 @@
+
+Melhorias/Bugs
+Cadastrar pessoa:
+  Melhorias:
+    Validar o formato do CPF
+    Validar o tamanho do CPF
+
+  Bugs
+    O objeto nome não é obrigatório
+    O objeto CPF não é obrigatório
+    O objeto logradouro não é obrigatório
+    Ao informar letras no objeto numero, retorna uma mensagem não tratada
+    O objeto bairro não é obrigatório
+    O objeto cidade não é obrigatório
+    O objeto estado não é obrigatório
+    O objeto DDD não é obrigatório
+    O objeto numero não é obrigatório
+
+
+Recuperar pessoa cadastrada:
+ Melhorias:
+   O ideal seria fazer a busca por CPF
+
+

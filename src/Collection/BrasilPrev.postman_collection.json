@@ -1,0 +1,330 @@
+{
+	"info": {
+		"_postman_id": "8efcf3b1-e6e9-45d8-a4e5-59ad5776687d",
+		"name": "BrasilPrev",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "RealizarNovoCadastro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2caf3405-de2f-498d-955d-4d55ea990794",
+						"exec": [
+							"pm.test(\"Validar Status code igual a 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"codigo\": 0,\r\n\"nome\": \"Rommel Von\",\r\n\"cpf\": \"12345678951\",\r\n\"enderecos\": [\r\n{\r\n\"logradouro\": \"Rua Alexandre Dumas\",\r\n\"numero\": 123,\r\n\"complemento\": \"Empresa\",\r\n\"bairro\": \"Chacara Santo Antonio\",\r\n\"cidade\": \"São Paulo\",\r\n\"estado\": \"SP\"\r\n}\r\n],\r\n\"telefones\": [\r\n{\r\n\"ddd\": \"11\",\r\n\"numero\": \"985388201\"\r\n}]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/pessoas",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pessoas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RealizarCadastroInformandoCpfJáCadastrado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "64aa324c-376d-4744-a23a-e640f76b45ff",
+						"exec": [
+							"pm.test(\"Validar Status code igual a 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar mensagem de pessoa já cadastrada\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Já existe pessoa cadastrada com o CPF 12345678912\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"codigo\": 0,\r\n\"nome\": \"Rommel Von\",\r\n\"cpf\": \"12345678912\",\r\n\"enderecos\": [\r\n{\r\n\"logradouro\": \"Rua Alexandre Dumas\",\r\n\"numero\": 123,\r\n\"complemento\": \"Empresa\",\r\n\"bairro\": \"Chacara Santo Antonio\",\r\n\"cidade\": \"São Paulo\",\r\n\"estado\": \"SP\"\r\n}\r\n],\r\n\"telefones\": [\r\n{\r\n\"ddd\": \"11\",\r\n\"numero\": \"985388879\"\r\n}]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/pessoas",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pessoas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RealizarCadastroInformandoNúmeroDeTelefoneJáCadastrado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3f6ae27d-f88c-4d0b-bb3c-a925a9a7a3f1",
+						"exec": [
+							"pm.test(\"Validar Status code igual a 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar mensagem de pessoa já cadastrada\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Já existe pessoa cadastrada com o CPF 12345678950\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"codigo\": 0,\r\n\"nome\": \"Rommel Von\",\r\n\"cpf\": \"12345678950\",\r\n\"enderecos\": [\r\n{\r\n\"logradouro\": \"Rua Alexandre Dumas\",\r\n\"numero\": 123,\r\n\"complemento\": \"Empresa\",\r\n\"bairro\": \"Chacara Santo Antonio\",\r\n\"cidade\": \"São Paulo\",\r\n\"estado\": \"SP\"\r\n}\r\n],\r\n\"telefones\": [\r\n{\r\n\"ddd\": \"11\",\r\n\"numero\": \"985388879\"\r\n}]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/pessoas",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pessoas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recuperar pessoa cadastrada",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4e8a690f-c874-43a1-9fde-a0bf66862afb",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/pessoas/11/985388878",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pessoas",
+						"11",
+						"985388878"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RecuperarDadosDeUmaPessoaCadastrada",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "abf17bad-6418-41a4-8ed3-dab924a957d8",
+						"exec": [
+							"pm.test(\"Validar Status code igual a 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar mensagem de pessoa não cadastrada\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Não existe pessoa com o telefone (12)985388878\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/pessoas/12/985388878",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pessoas",
+						"12",
+						"985388878"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RecuperarDadosDeUmaPessoaCadastradaInformandoDadosErrados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c833e39e-a9e8-49e7-93f3-8df65871151c",
+						"exec": [
+							"pm.test(\"Validar Status code igual a 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar mensagem de pessoa não cadastrada\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Não existe pessoa com o telefone (12)985388878\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/pessoas/12/9853888781",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pessoas",
+						"12",
+						"9853888781"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RecuperarDadosDeUmaPessoaInformandoDDDNãoCadastrado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a92ea2fe-4916-4f1c-b731-c1a420811910",
+						"exec": [
+							"pm.test(\"Validar Status code igual a 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar mensagem de pessoa não cadastrada\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Não existe pessoa com o telefone (12)985388878\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/pessoas/12/985388878",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pessoas",
+						"12",
+						"985388878"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RecuperarDadosDeUmaPessoaInformandoNumeroNãoCadastrado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fbe9b34b-3562-4049-bcba-c3f97b8957b7",
+						"exec": [
+							"pm.test(\"Validar Status code igual a 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar mensagem de pessoa não cadastrada\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Não existe pessoa com o telefone (11)9853888781\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/pessoas/11/9853888781",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pessoas",
+						"11",
+						"9853888781"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
